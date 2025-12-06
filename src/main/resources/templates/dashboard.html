@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Security Alerts Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold text-center mb-6">Security Alerts Dashboard</h1>
+
+    <!-- Widget: Alert Counts -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="bg-white p-4 rounded-lg shadow">
+            <h2 class="text-xl font-semibold">Total Alerts</h2>
+            <p class="text-2xl" th:text="${counts.totalAlerts}">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow">
+            <h2 class="text-xl font-semibold">True Positives</h2>
+            <p class="text-2xl" th:text="${counts.truePositives}">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow">
+            <h2 class="text-xl font-semibold">False Positives</h2>
+            <p class="text-2xl" th:text="${counts.falsePositives}">0</p>
+        </div>
+    </div>
+
+    <!-- Table: Latest Alerts -->
+    <div class="bg-white p-4 rounded-lg shadow mb-8">
+        <h2 class="text-xl font-semibold mb-4">Latest 10 Alerts</h2>
+        <table class="min-w-full border-collapse">
+            <thead>
+            <tr class="bg-gray-200">
+                <th class="border p-2">ID</th>
+                <th class="border p-2">Title</th>
+                <th class="border p-2">Severity</th>
+                <th class="border p-2">Category</th>
+                <th class="border p-2">Created Time</th>
+                <th class="border p-2">Validity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="alert : ${latestAlerts}">
+                <td class="border p-2" th:text="${alert.id}"></td>
+                <td class="border p-2" th:text="${alert.title}"></td>
+                <td class="border p-2" th:text="${alert.severity}"></td>
+                <td class="border p-2" th:text="${alert.category}"></td>
+                <td class="border p-2" th:text="${alert.alertCreationTime}"></td>
+                <td class="border p-2" th:text="${alert.validity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- KPI: Average Analysis Time -->
+    <div class="bg-white p-4 rounded-lg shadow">
+        <h2 class="text-xl font-semibold mb-4">Average Analysis Time (Seconds)</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <p class="text-lg">True Positives: <span th:text="${avgTimes.truePositiveAvgTime != null ? avgTimes.truePositiveAvgTime : 'N/A'}"></span></p>
+            </div>
+            <div>
+                <p class="text-lg">False Positives: <span th:text="${avgTimes.falsePositiveAvgTime != null ? avgTimes.falsePositiveAvgTime : 'N/A'}"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

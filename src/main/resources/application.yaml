@@ -1,0 +1,53 @@
+server:
+  port: 7095
+
+debug: true
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  application:
+    name: autonomous-ai-soc-analyst
+  datasource:
+    url: jdbc:mysql://localhost:3306/default?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: MyRootPassword123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # Options: none, validate, update, create, create-drop
+      multiTenancy: SCHEMA
+      tenant_identifier_resolver: ai.soc.config.TenantIdentifierResolver
+      multi_tenant_connection_provider: ai.soc.config.SchemaMultiTenantConnectionProvider
+    show-sql: true  # Set to false in production for performance
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+defender:
+  api-base: https://api.securitycenter.microsoft.com
+  token-endpoint: https://login.microsoftonline.com
+  tenant-id: test-tenant-id
+  client-id: test-client-id
+  client-secret: test-client-secret
+  scope: https://api.securitycenter.microsoft.com/.default
+  suppress-assigned-to: suppressor@client.com
+
+virustotal:
+  api-base: https://www.virustotal.com/api/v3
+  api-key: virut-total-api-key
+
+abuseipdb:
+  api-base: https://api.abuseipdb.com/api/v2
+  api-key: abuse-ip-db-api-key
+
+litellm:
+  api-base: https://your-litellm-endpoint.com/
+  api-key: your-litellm-api-key
+  model: azure/gpt-4.1-nano
+
