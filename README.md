@@ -104,6 +104,9 @@ litellm:
 ```
 Access the app at: http://localhost:7095
 
+## Architecture Diagram
+<img width="801" height="565" alt="image" src="https://github.com/user-attachments/assets/d77b7d32-9282-41cf-8074-207001201961" />
+
 ---
 
 Built with passion for smarter SOC operations
