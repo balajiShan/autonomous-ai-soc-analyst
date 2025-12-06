@@ -52,8 +52,8 @@ This autonomous system transforms traditional SOC operations by leveraging Large
 
 ### 1. Clone the Repository
 ```bash
-  git clone https://github.com/yourusername/soc-alert-dashboard.git
-  cd soc-alert-dashboard
+  git clone https://github.com/balajiShan/autonomous-ai-soc-analyst.git
+  cd autonomous-ai-soc-analyst
 ```
 
 ### 2. Backend Setup
